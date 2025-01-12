@@ -50,6 +50,11 @@ const captainSchema  = new mongoose.model({
             type : String,
             required : true,
             enum : ['scotter','motorcycle','car','auto']
+        },
+        model : {
+            type : String,
+            required : true,
+            min : [2,"Model should contain atleast 2 letters"]
         }
     }
 })
