@@ -29,4 +29,4 @@ router.get("/profile",authUser,userController.getUserProfile)
 
 router.post("/logout",authUser,userController.logoutUser)
 
-module.exports = router
+module.exports = router;

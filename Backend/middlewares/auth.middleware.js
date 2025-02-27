@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config(); // Added missing semicolon
 const express = require("express");
 const jwt = require("jsonwebtoken");
 const BlacklistToken = require("../models/blacklistToken.model");
@@ -7,7 +7,6 @@ const captainModel = require('../models/captain.model');
 
 module.exports.authUser = async (req,res,next) =>{
     const token = req.cookies.token || req.headers.authorization.split(" ")[1];
-    console.log(token);
     if(!token){
         return res.status(401).json({message : "Unauthorized User"});
     }

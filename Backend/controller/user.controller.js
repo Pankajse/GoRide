@@ -17,6 +17,7 @@ module.exports.registerUser = async (req,res,next)=>{
     }
     const hashPassword = await userModel.hashPassword(password);
     const user = await userService.createUser(fullname.firstname,fullname.lastname,email,hashPassword);
+    
     const token = user.generateAuthToken();
     res.status(201).json({token,user});
 }
@@ -47,11 +48,22 @@ module.exports.getUserProfile = (req,res)=>{
     return res.status(200).json({user});
 }
 
-module.exports.logoutUser = async(req,res)=>{
-    res.clearCookie('token');
-    const token = req.cookies.token || req.headers.authorization.split(" ")[1];
-    await blacklistTokenModel.create({
-        token : token
-    });
-    return res.status(200).json({message : "Logged out"})
-}
+module.exports.logoutUser = async (req, res) => {
+    res.clearCookie("token");
+    
+    const token = req.cookies.token || (req.headers.authorization && req.headers.authorization.split(" ")[1]);
+
+    if (!token) {
+        return res.status(400).json({ message: "No token provided" });
+    }
+    try {
+        const existingToken = await blacklistTokenModel.findOne({ token });
+        if (!existingToken) {
+            await blacklistTokenModel.create({ token });
+        }
+        
+        return res.status(200).json({ message: "Logged out successfully" });
+    } catch (error) {
+        return res.status(500).json({ message: "Internal Server Error" });
+    }
+};

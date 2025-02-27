@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
-const captainSchema  = new mongoose.model({
+const captainSchema  = new mongoose.Schema({
     fullname : {
         firstname :{
             type : String,
@@ -73,4 +73,4 @@ captainSchema.methods.comparePassword = async function(password) {
 
 const captainModel = mongoose.model("captain",captainSchema);
 
-module.exports = captainModel
+module.exports = captainModel; // Added missing semicolon
