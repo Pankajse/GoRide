@@ -9,7 +9,7 @@ const UserLogin = () => {
   const [password, setPassword] = useState('')
   const [msg, setMsg] = useState('')
 
-  const {user, setUser} = useContext(UserDataContext)
+  const { setUser} = useContext(UserDataContext)
 
   const navigate = useNavigate();
 
@@ -22,9 +22,11 @@ const UserLogin = () => {
     try {
       const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/users/login`,userdata);
       if(response.status == 201){
-        setUser(response.data.user)
-        localStorage.setItem('token',response.data.token);
-        navigate('/Home')
+        const { user } = response.data;
+        console.log('User data from server:', user);
+      setUser(user);
+      localStorage.setItem('token', response.data.token);
+      navigate('/Home');
       }
     } catch (error) {
       if(error.response){

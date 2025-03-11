@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { CaptainDataContext } from '../context/CaptainContext';
 
 const CaptainProtectWrapper = ({children}) => {
-    const {captain ,setCaptain} = useContext(CaptainDataContext);
+    const { captain, setCaptain} = useContext(CaptainDataContext);
     const [loading , setLoading] = useState(true)
     const navigate = useNavigate()
     useEffect(()=>{

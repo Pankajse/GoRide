@@ -90,9 +90,8 @@ const CaptainSignup = () => {
             >
               <option value="" disabled>Select Vehicle Type</option>
               <option value="car">Car</option>
+              <option value="moto">Moto</option>
               <option value="auto">Auto</option>
-              <option value="scotter">Scotter</option>
-              <option value="motorcycle">Motorcycle</option>
             </select>
           </div>
           <button className='bg-black text-white w-full py-2 text-lg my-6 rounded-md'>Create Captain Account</button>

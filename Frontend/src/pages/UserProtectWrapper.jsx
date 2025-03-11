@@ -5,7 +5,7 @@ import { UserDataContext } from '../context/UserContext';
 
 const UserProtectWrapper = ({ children }) => {
     const navigate = useNavigate();
-    const { user , setUser } = useContext(UserDataContext);
+    const { user,setUser } = useContext(UserDataContext);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -20,7 +20,7 @@ const UserProtectWrapper = ({ children }) => {
         }).then(
             (response) => {
                 if (response.status === 200) {
-                    setUser(response.data.user);
+                    setUser(response.data);
                     setLoading(false);
                 }
             }

@@ -39,7 +39,7 @@ module.exports.loginUser = async (req,res,next) =>{
         return res.status(401).json({message : "Wrong Password or Email"})
     }
     const token = user.generateAuthToken();
-    res.cookie('token', token);
+    res.cookie('token',token);
     res.status(201).json({token,user});
 }
 

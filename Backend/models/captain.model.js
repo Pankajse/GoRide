@@ -50,11 +50,17 @@ const captainSchema  = new mongoose.Schema({
             type : String,
             required : true,
             enum : ['scotter','motorcycle','car','auto']
+        }
+    },
+    socketId : {
+        type : String
+    },
+    location: {
+        ltd: {
+            type: Number,
         },
-        model : {
-            type : String,
-            required : true,
-            min : [2,"Model should contain atleast 2 letters"]
+        lng: {
+            type: Number,
         }
     }
 })

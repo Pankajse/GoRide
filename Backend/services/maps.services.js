@@ -1,4 +1,5 @@
 const axios = require('axios');
+const captainModel = require('../models/captain.model');
 
 module.exports.getAddressCoordinates = async (address) => {
     const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${process.env.GOOGLE_MAPS_API_KEY}`;
@@ -53,10 +54,26 @@ module.exports.getAutoSuggestions = async (input) => {
         if (data.status === "OK") {
             return data.predictions;
         } else {
+            console.error("Error response from Google Maps API:", data);
             throw new Error("Error fetching data from Google Maps API");
         }
     } catch (error) {
-        console.log(error);
+        console.error("Error fetching auto suggestions:", error);
         throw error;
     }
+}
+
+module.exports.getCaptainsInTheRadius = async (ltd, lng, radius) => {
+    if(!ltd || !lng || !radius){
+        throw new Error("Latitude, Longitude and Radius are required");
+    }
+    const captains = await captainModel.find({
+        location: {
+            $geoWithin: {
+                $centerSphere: [ [ ltd, lng ], radius / 6371 ]
+            }
+        }
+    });
+
+    return captains;
 }

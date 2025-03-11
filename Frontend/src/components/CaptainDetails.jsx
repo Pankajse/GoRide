@@ -1,6 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { CaptainDataContext } from '../context/CaptainContext'
 
 const CaptainDetails = () => {
+    const { captain } = useContext(CaptainDataContext);
+
+    if(!captain){
+        return <div>
+            Loadkjhgfghjk
+        </div>
+    }
+
     return (
         <div>
             <div className='p-4 rounded-2xl absolute bottom-0 bg-white w-full'>
@@ -8,7 +17,7 @@ const CaptainDetails = () => {
                 <div className='flex justify-between items-center py-2 my-3'>
                     <div>
                         <img className='w-16 h-16 object-cover rounded-full' src="https://th.bing.com/th/id/R.106b752bda82545d3c70972dbfe74281?rik=iwLSNYal12Y9TA&riu=http%3a%2f%2fblogs.timesofindia.indiatimes.com%2fwp-content%2fuploads%2f2015%2f04%2fRahul-Gandhi.jpg&ehk=0si1oTzAHgpbGJ6CI9%2f7WlSb9hDPYQmQ8bIeijpxe74%3d&risl=&pid=ImgRaw&r=0" alt="" />
-                        <h3 className='text-2xl font-medium '>Rahul Gandhi</h3>
+                        <h3 className='text-2xl font-medium flex capitalize '>{captain.fullname.firstname} {captain.fullname.lastname}</h3>
                     </div>
 
                     <div>
