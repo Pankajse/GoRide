@@ -1,6 +1,6 @@
-# Uber Clone Frontend
+# GoRide Frontend
 
-This project is the frontend part of the Uber Clone application, built using React and Vite.
+This project is the frontend part of the GoRide application, built using React and Vite.
 
 ## Features
 
