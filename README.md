@@ -1,6 +1,6 @@
-# Uber Clone
+# GoRide
 
-This project is a clone of the Uber application, built using the MERN stack (MongoDB, Express, React, Node.js) and Socket.io for real-time communication.
+This project is a ride booking application, built using the MERN stack (MongoDB, Express, React, Node.js) and Socket.io for real-time communication.
 
 ## Features
 
